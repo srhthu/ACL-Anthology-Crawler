@@ -38,7 +38,7 @@ if not os.path.exists(conf_name):
 
 illegal_chr = r'\/:*?<>|'
 table = ''.maketrans('', '', illegal_chr)
-for i, paper in tqdm(enumerate(paper_list)):
+for i, paper in tqdm(list(enumerate(paper_list))):
     r = requests.get(paper[2])
     n = '{}.{}.pdf'.format(i+1, paper[0].translate(table))
     with open('./{}/{}'.format(conf_name, n), 'wb') as f:
