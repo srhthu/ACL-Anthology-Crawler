@@ -53,11 +53,30 @@ The output file's each line is a JSON string:
 {"title": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing", "url": "https://aclanthology.org/2025.emnlp-main.0/", "pdf_url": "https://aclanthology.org/2025.emnlp-main.0.pdf", "section_id": "2025emnlp-main"}
 ```
 
+### Download Paper PDF
 
-## Run
+You can download the paper of specified sections under the folder:
+```Bash
+# Default to download the main conference papers to the dir ./paper_pdf
+python crawl.py download --url https://aclanthology.org/events/emnlp-2025/
 ```
-python crawl.py
+
+### Use As a Package
+
+You can get the paper list by
+
+```python
+from crawl import get_bs_soup_from_url, get_main_section, get_sub_sections, find_paper_list
+
+url = ""
+soup = get_bs_soup_from_url(url)
+main_section = get_main_section(soup)
+sub_sections = get_sub_sections(main_section)
+
+paper_list = find_paper_list(soup, sub_sections[0][0])
 ```
 
 ## Dependency
-bs4
+```Bash
+pip install bs4
+```
